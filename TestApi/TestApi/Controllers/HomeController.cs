@@ -6,7 +6,13 @@ namespace TestApi.Controllers
     [Route("[controller]")]
     public class HomeController : ControllerBase
     {
-        public double Index(int num1, int num2)
+        /// <summary>
+        /// 计算参数结果
+        /// </summary>
+        /// <param name="num1"></param>
+        /// <param name="num2"></param>
+        /// <returns></returns>
+        public double Division(int num1, int num2)
         {
             var result = (num1 * 1d) / num2;
 
