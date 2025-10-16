@@ -20,11 +20,11 @@ namespace TestApi.Controllers
             return result;
         }
 
-        public List<User> GetList()
+        public List<User> GetUserList()
         {
             List<User> result = new List<User>();
             var connectionString = "Data Source=.;Initial Catalog=TestDb;User ID=sa;Password=sa4d65as7d125dasd;";
-            SqlConnection connection = new SqlConnection(connectionString);
+            using SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
             SqlCommand command = new SqlCommand("SELECT * FROM [User]", connection);
             SqlDataReader reader = command.ExecuteReader();
