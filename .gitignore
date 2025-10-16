@@ -2,3 +2,4 @@
 bin
 obj
 .dll
+/TestApi/TestApi/TestApi.csproj.user
