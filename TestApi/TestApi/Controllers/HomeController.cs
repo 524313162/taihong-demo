@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using System.Security.Cryptography;
 
 namespace TestApi.Controllers
 {
@@ -40,6 +41,11 @@ namespace TestApi.Controllers
             reader.Close();
             connection.Close();
             return result;
+        }
+
+        public string Md5(string text)
+        {
+            return MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(text)).ToString();
         }
 
         public class User
