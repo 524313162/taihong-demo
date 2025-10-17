@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using System.Security.Cryptography;
 
 namespace TestApi.Controllers
 {
@@ -20,11 +21,11 @@ namespace TestApi.Controllers
             return result;
         }
 
-        public List<User> GetList()
+        public List<User> GetUserList()
         {
             List<User> result = new List<User>();
             var connectionString = "Data Source=.;Initial Catalog=TestDb;User ID=sa;Password=sa4d65as7d125dasd;";
-            SqlConnection connection = new SqlConnection(connectionString);
+            using SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
             SqlCommand command = new SqlCommand("SELECT * FROM [User]", connection);
             SqlDataReader reader = command.ExecuteReader();
@@ -40,6 +41,11 @@ namespace TestApi.Controllers
             reader.Close();
             connection.Close();
             return result;
+        }
+
+        public string Md5(string text)
+        {
+            return MD5.Create().ComputeHash(System.Text.Encoding.UTF8.GetBytes(text)).ToString();
         }
 
         public class User
